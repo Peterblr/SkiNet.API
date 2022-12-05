@@ -1,0 +1,9 @@
+Drop-Database --> remove database;
+
+Remove-Migration -force --> remove migrations;
+
+Add-Migration 'Name' --> add migration;
+
+Add-Migration 'InitialCreate' -o Data/Migrations --> add migration to folder;
+
+Update-Database --> update database after creating migration;
