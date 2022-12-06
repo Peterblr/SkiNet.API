@@ -27,6 +27,16 @@ namespace Infrastructure
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
             return await context.Products.ToListAsync();
-        }      
+        }
+
+        public async Task<IEnumerable<ProductBrand>> GetAllProductBrandsAsync()
+        {
+            return await context.ProductBrands.ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductType>> GetAllProductTypesAsync()
+        {
+            return await context.ProductTypes.ToListAsync();
+        }
     }
 }

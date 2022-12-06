@@ -17,7 +17,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             var products = await repository.GetAllProductsAsync();
 
@@ -31,5 +31,22 @@ namespace API.Controllers
 
             return product == null ? NotFound() : product;
         }
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<IEnumerable<ProductBrand>>> GetProductBrands()
+        {
+            var brands = await repository.GetAllProductBrandsAsync();
+
+            return Ok(brands);
+        }
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IEnumerable<ProductType>>> GetProductTypes()
+        {
+            var types = await repository.GetAllProductTypesAsync();
+
+            return Ok(types);
+        }
+
     }
 }
