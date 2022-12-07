@@ -9,17 +9,25 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository repository;
+        private readonly IGenericRepository<Product> productRepo;
+        private readonly IGenericRepository<ProductBrand> brandRepo;
+        private readonly IGenericRepository<ProductType> typeRepo;
 
-        public ProductsController(IProductRepository repository)
+        public ProductsController(
+            IGenericRepository<Product> productRepo,
+            IGenericRepository<ProductBrand> brandRepo,
+            IGenericRepository<ProductType> typeRepo
+            )
         {
-            this.repository = repository;
+            this.productRepo = productRepo;
+            this.brandRepo = brandRepo;
+            this.typeRepo = typeRepo;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var products = await repository.GetAllProductsAsync();
+            var products = await productRepo.GetAllAsync();
 
             return Ok(products);
         }
@@ -27,7 +35,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await repository.GetProductAsync(id);
+            var product = await productRepo.GetByIdAsync(id);
 
             return product == null ? NotFound() : product;
         }
@@ -35,7 +43,7 @@ namespace API.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<IEnumerable<ProductBrand>>> GetProductBrands()
         {
-            var brands = await repository.GetAllProductBrandsAsync();
+            var brands = await brandRepo.GetAllAsync();
 
             return Ok(brands);
         }
@@ -43,7 +51,7 @@ namespace API.Controllers
         [HttpGet("types")]
         public async Task<ActionResult<IEnumerable<ProductType>>> GetProductTypes()
         {
-            var types = await repository.GetAllProductTypesAsync();
+            var types = await typeRepo.GetAllAsync();
 
             return Ok(types);
         }
