@@ -21,12 +21,18 @@ namespace Infrastructure
 
         public async Task<Product?> GetProductAsync(int id)
         {
-            return await context.Products.FindAsync(id);
+            return await context.Products
+                .Include(p => p.ProductBrand)
+                .Include(p => p.ProductType)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await context.Products.ToListAsync();
+            return await context.Products
+                .Include(p => p.ProductBrand)
+                .Include(p => p.ProductType)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<ProductBrand>> GetAllProductBrandsAsync()
