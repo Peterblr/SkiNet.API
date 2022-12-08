@@ -1,4 +1,5 @@
 ﻿using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,12 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository repository;
+        private readonly IMapper mapper;
 
-        public ProductsController(IProductRepository repository)
+        public ProductsController(IProductRepository repository, IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -46,16 +49,18 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            var productDto = new ProductToReturnDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                PictureUrl = product.PictureUrl,
-                Price = product.Price,
-                ProductBrand = product.ProductBrand?.Name,
-                ProductType = product.ProductType?.Name
-            };
+            //var productDto = new ProductToReturnDto
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Description = product.Description,
+            //    PictureUrl = product.PictureUrl,
+            //    Price = product.Price,
+            //    ProductBrand = product.ProductBrand?.Name,
+            //    ProductType = product.ProductType?.Name
+            //};
+
+            var productDto = mapper.Map<Product, ProductToReturnDto>(product);
 
             return Ok(productDto);
         }
