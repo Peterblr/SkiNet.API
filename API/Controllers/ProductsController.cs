@@ -25,16 +25,7 @@ namespace API.Controllers
         {
             var products = await repository.GetAllProductsAsync();
 
-            var productsDto = products.Select(product => new ProductToReturnDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                PictureUrl = product.PictureUrl,
-                Price = product.Price,
-                ProductBrand = product.ProductBrand?.Name,
-                ProductType = product.ProductType?.Name
-            }).ToList();
+            var productsDto = mapper.Map<IEnumerable<Product>,IEnumerable<ProductToReturnDto>>(products);
 
             return Ok(productsDto);
         }
@@ -48,17 +39,6 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-
-            //var productDto = new ProductToReturnDto
-            //{
-            //    Id = product.Id,
-            //    Name = product.Name,
-            //    Description = product.Description,
-            //    PictureUrl = product.PictureUrl,
-            //    Price = product.Price,
-            //    ProductBrand = product.ProductBrand?.Name,
-            //    ProductType = product.ProductType?.Name
-            //};
 
             var productDto = mapper.Map<Product, ProductToReturnDto>(product);
 
