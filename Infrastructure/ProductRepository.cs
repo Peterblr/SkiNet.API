@@ -27,11 +27,13 @@ namespace Infrastructure
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(string? sort)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync(string? sort, int? brandId, int? typeId)
         {
             var products = await context.Products
                 .Include(p => p.ProductBrand)
                 .Include(p => p.ProductType)
+                .Where(p => (!brandId.HasValue || p.ProductBrandId == brandId)
+                    && (!typeId.HasValue || p.ProductTypeId == typeId))
                 .ToListAsync();
 
             return sort == null ? products : DoSort(products, sort);
