@@ -27,12 +27,16 @@ namespace Infrastructure
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync(string? sort, int? brandId, int? typeId)
         {
-            return await context.Products
+            var products = await context.Products
                 .Include(p => p.ProductBrand)
                 .Include(p => p.ProductType)
+                .Where(p => (!brandId.HasValue || p.ProductBrandId == brandId)
+                    && (!typeId.HasValue || p.ProductTypeId == typeId))
                 .ToListAsync();
+
+            return sort == null ? products : DoSort(products, sort);
         }
 
         public async Task<IEnumerable<ProductBrand>> GetAllProductBrandsAsync()
@@ -43,6 +47,19 @@ namespace Infrastructure
         public async Task<IEnumerable<ProductType>> GetAllProductTypesAsync()
         {
             return await context.ProductTypes.ToListAsync();
+        }
+
+        private static List<Product> DoSort(List<Product> products, string sort)
+        {
+            products = sort switch
+            {
+                "nameDesc" => products.OrderByDescending(s => s.Name).ToList(),
+                "price" => products.OrderBy(s => s.Price).ToList(),
+                "priceDesc" => products.OrderByDescending(s => s.Price).ToList(),
+                _ => products.OrderBy(s => s.Name).ToList(),
+            };
+
+            return products;
         }
     }
 }
