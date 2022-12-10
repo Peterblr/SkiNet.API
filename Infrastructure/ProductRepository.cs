@@ -38,9 +38,9 @@ namespace Infrastructure
 
             products = productParams.Sort == null ? products : DoSort(products, productParams.Sort);
 
-            products = PaginatedList(products, productParams.PageIndex, productParams.PageSize);
+            PaginatedList<Product> paginatedProducts = new(products, productParams.PageIndex, productParams.PageSize);
 
-            return products;
+            return paginatedProducts;
         }
 
         public async Task<IEnumerable<ProductBrand>> GetAllProductBrandsAsync()
@@ -64,13 +64,6 @@ namespace Infrastructure
             };
 
             return products;
-        }
-
-        private static List<Product> PaginatedList(List<Product> source, int pageIndex, int pageSize)
-        {
-            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-
-            return items;
         }
     }
 }
