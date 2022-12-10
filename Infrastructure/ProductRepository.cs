@@ -27,16 +27,20 @@ namespace Infrastructure
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(string? sort, int? brandId, int? typeId)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync(ProductSpecParams productParams)
         {
             var products = await context.Products
                 .Include(p => p.ProductBrand)
                 .Include(p => p.ProductType)
-                .Where(p => (!brandId.HasValue || p.ProductBrandId == brandId)
-                    && (!typeId.HasValue || p.ProductTypeId == typeId))
+                .Where(p => (!productParams.BrandId.HasValue || p.ProductBrandId == productParams.BrandId)
+                    && (!productParams.TypeId.HasValue || p.ProductTypeId == productParams.TypeId))
                 .ToListAsync();
 
-            return sort == null ? products : DoSort(products, sort);
+            products = productParams.Sort == null ? products : DoSort(products, productParams.Sort);
+
+            products = PaginatedList(products, productParams.PageIndex, productParams.PageSize);
+
+            return products;
         }
 
         public async Task<IEnumerable<ProductBrand>> GetAllProductBrandsAsync()
@@ -60,6 +64,13 @@ namespace Infrastructure
             };
 
             return products;
+        }
+
+        private static List<Product> PaginatedList(List<Product> source, int pageIndex, int pageSize)
+        {
+            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return items;
         }
     }
 }
