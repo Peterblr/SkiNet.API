@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
