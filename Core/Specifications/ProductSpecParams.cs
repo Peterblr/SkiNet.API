@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities
+namespace Core.Specifications
 {
     public class ProductSpecParams
     {
@@ -20,16 +20,16 @@ namespace Core.Entities
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
 
-        public int? BrandId{ get; set; }
-        public int? TypeId{ get; set; }
-        public string? Sort{ get; set; }
+        public int? BrandId { get; set; }
+        public int? TypeId { get; set; }
+        public string? Sort { get; set; }
 
         private string? _search;
 
         public string? Search
         {
             get => _search;
-            set => _search = value?.ToLower(); 
+            set => _search = value?.ToLower();
         }
     }
 }
