@@ -10,19 +10,26 @@ namespace API.Controllers
 {
     public class ProductsController : BaseApiController
     {
-        private readonly IProductRepository repository;
+        private readonly IGenericRepository<Product> productsRepo;
+        private readonly IGenericRepository<ProductBrand> brandsRepo;
+        private readonly IGenericRepository<ProductType> typesRepo;
         private readonly IMapper mapper;
 
-        public ProductsController(IProductRepository repository, IMapper mapper)
+        public ProductsController(IGenericRepository<Product> productsRepo,
+            IGenericRepository<ProductBrand> brandsRepo,
+            IGenericRepository<ProductType> typesRepo,
+            IMapper mapper)
         {
-            this.repository = repository;
+            this.productsRepo = productsRepo;
+            this.brandsRepo = brandsRepo;
+            this.typesRepo = typesRepo;
             this.mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productParams)
         {
-            var products = await repository.GetAllProductsAsync(productParams);
+            var products = await productsRepo.GetAllAsync();
            
             var productsDto = mapper.Map<IEnumerable<Product>,IEnumerable<ProductToReturnDto>>(products);
 
@@ -34,7 +41,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
-            var product = await repository.GetProductAsync(id);
+            var product = await productsRepo.GetByIdAsync(id);
 
             if (product == null)
             {
@@ -49,7 +56,7 @@ namespace API.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<IEnumerable<ProductBrand>>> GetProductBrands()
         {
-            var brands = await repository.GetAllProductBrandsAsync();
+            var brands = await brandsRepo.GetAllAsync();
 
             return Ok(brands);
         }
@@ -57,7 +64,7 @@ namespace API.Controllers
         [HttpGet("types")]
         public async Task<ActionResult<IEnumerable<ProductType>>> GetProductTypes()
         {
-            var types = await repository.GetAllProductTypesAsync();
+            var types = await typesRepo.GetAllAsync();
 
             return Ok(types);
         }
