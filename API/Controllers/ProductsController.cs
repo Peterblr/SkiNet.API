@@ -3,6 +3,7 @@ using API.Errors;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,9 +28,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productParams)
+        public async Task<ActionResult<IEnumerable<ProductToReturnDto>>> GetProducts(string? sort)//GetProducts([FromQuery]ProductSpecParams productParams)
         {
-            var products = await productsRepo.GetAllAsync();
+            var spec = new ProductsWithTypesAndBrandsSpecification(sort);
+
+            var products = await productsRepo.ListAsync(spec);
            
             var productsDto = mapper.Map<IEnumerable<Product>,IEnumerable<ProductToReturnDto>>(products);
 
@@ -41,7 +44,9 @@ namespace API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
-            var product = await productsRepo.GetByIdAsync(id);
+            var spec = new ProductsWithTypesAndBrandsSpecification(id);
+
+            var product = await productsRepo.GetEntityWithSpec(spec);
 
             if (product == null)
             {

@@ -37,8 +37,6 @@ namespace Infrastructure
                     && (!productParams.TypeId.HasValue || p.ProductTypeId == productParams.TypeId))
                 .ToListAsync();
 
-            products = productParams.Sort == null ? products : DoSort(products, productParams.Sort);
-
             PaginatedList<Product> paginatedProducts = new(products, productParams.PageIndex, productParams.PageSize);
 
             return paginatedProducts;
@@ -52,19 +50,6 @@ namespace Infrastructure
         public async Task<IEnumerable<ProductType>> GetAllProductTypesAsync()
         {
             return await context.ProductTypes.ToListAsync();
-        }
-
-        private static List<Product> DoSort(List<Product> products, string sort)
-        {
-            products = sort switch
-            {
-                "nameDesc" => products.OrderByDescending(s => s.Name).ToList(),
-                "price" => products.OrderBy(s => s.Price).ToList(),
-                "priceDesc" => products.OrderByDescending(s => s.Price).ToList(),
-                _ => products.OrderBy(s => s.Name).ToList(),
-            };
-
-            return products;
         }
     }
 }
