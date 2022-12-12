@@ -21,25 +21,15 @@ namespace Infrastructure
 
         public async Task<Product?> GetProductAsync(int id)
         {
-            return await context.Products
-                .Include(p => p.ProductBrand)
-                .Include(p => p.ProductType)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            return await context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(ProductSpecParams productParams)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            var products = await context.Products
-                .Include(p => p.ProductBrand)
-                .Include(p => p.ProductType)
-                .Where(p => (string.IsNullOrEmpty(productParams.Search) || p.Name.ToLower().Contains(productParams.Search))
-                    && (!productParams.BrandId.HasValue || p.ProductBrandId == productParams.BrandId)
-                    && (!productParams.TypeId.HasValue || p.ProductTypeId == productParams.TypeId))
-                .ToListAsync();
+            var products = await context.Products.ToListAsync();
 
-            PaginatedList<Product> paginatedProducts = new(products, productParams.PageIndex, productParams.PageSize);
 
-            return paginatedProducts;
+            return products;
         }
 
         public async Task<IEnumerable<ProductBrand>> GetAllProductBrandsAsync()
