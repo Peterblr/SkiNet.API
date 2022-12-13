@@ -11,7 +11,7 @@ Update-Database --> update database after creating migration;
 
 ******* Angular *************
 
-ng add ngx-bootstrap --> add ngx-bootstrap (https://valor-software.com/ngx-bootstrap/#/documentation)
+* ng add ngx-bootstrap --> add ngx-bootstrap (https://valor-software.com/ngx-bootstrap/#/documentation)
 
 	--> add packege to app.module.ts imports:
 
@@ -29,7 +29,7 @@ ng add ngx-bootstrap --> add ngx-bootstrap (https://valor-software.com/ngx-boots
 
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We">
 
-Install Bootstrap (https://www.npmjs.com/package/bootstrap):
+* Install Bootstrap (https://www.npmjs.com/package/bootstrap):
     1.1 --> npm i bootstrap   
     1.2. add styles to angular.json -->
          "styles": [
@@ -37,7 +37,7 @@ Install Bootstrap (https://www.npmjs.com/package/bootstrap):
               "./node_modules/bootstrap/dist/css/bootstrap.min.css" 
             ],
 
-Install font-awesome (https://www.npmjs.com/package/font-awesome):
+* Install font-awesome (https://www.npmjs.com/package/font-awesome):
     2.1. -->  npm i font-awesome
     2.2 add styles to angular.json -->
          "styles": [
@@ -45,3 +45,10 @@ Install font-awesome (https://www.npmjs.com/package/font-awesome):
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/font-awesome/css/font-awesome.min.css" 
             ],
+
+* Update strict to 'false' into tsconfig.json:
+    ...
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    ...

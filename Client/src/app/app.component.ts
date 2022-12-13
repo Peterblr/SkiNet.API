@@ -11,12 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'Skinet';
   baseUrl = 'https://localhost:7064/api/products';
+  products: any[];
 
   constructor(private http: HttpClient) {}
   
   ngOnInit(): void {
     this.http.get(this.baseUrl).subscribe((res: any) => {
-      console.log(res);
+      this.products = res.data;
     }, error => {
       console.log(error);
     });

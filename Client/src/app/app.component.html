@@ -5,4 +5,10 @@
 <br>
 <div class="container">
     <h1>Welcome to {{title}}!</h1>
+    <ul>
+        <li *ngFor="let product of products">
+            {{product.name}}
+        </li>
+    </ul>
 </div>
+
