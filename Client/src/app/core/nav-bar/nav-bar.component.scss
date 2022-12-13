@@ -1,13 +1,13 @@
-nav {
-    font-size: large;
-}
-
-.bg-custom {
-    background: linear-gradient(to right, #e66465, #9198e5);
+.my-bg-custom {
+    background: linear-gradient(to right, #964242, #595e8d);
   }
 
 .my-shadow:hover {
-    box-shadow: 0px 0px 1.5rem rgba(214, 7, 233, 0.87); 
+    box-shadow: 0px 0px 1.5rem rgba(224, 132, 233, 0.87); 
+    min-height: 25px;
+    min-width: 25px;
+    border-radius: 50%;
+    padding: 0.3rem;
 }
 
 .cart-no {
@@ -18,9 +18,13 @@ nav {
     border-color: #a9aee6;
     border-style: solid ;
     font-size: 1em;
-    background: blue;
-    color: white;
+    background: #432c6d;
+    color: #a9aee6;
     text-align: center;
     top: -10px;
     right: 40%;
+}
+
+.my-nav-bar {
+    height: 5rem;
 }
