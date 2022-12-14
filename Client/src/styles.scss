@@ -3,6 +3,7 @@ body {
 }
 
 .my-container {
+    width: calc(100vw - 2rem);
     max-width: 1500px;
     min-height: calc(100vh - 13rem);
     margin: 1rem;

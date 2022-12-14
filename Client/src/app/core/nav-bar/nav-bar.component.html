@@ -1,35 +1,40 @@
-<div
-  class="my-nav-bar d-flex flex-column flex-md-row align-items-center justify-content-between my-bg-custom fixed-top"
->
-  <img
-    src="/assets/images/logo.png"
-    alt="logo"
-    style="max-height: 70px"
-    class="my-shadow m-2"
-  />
-  <nav class="mt-2 mt-md-0 me-md-3">
-    <a
-      class="m-3 text-white fs-4 text-decoration-none my-shadow"
-      href="#"
-      >Home</a
-    >
-    <a
-      class="m-3 text-white fs-4 text-decoration-none my-shadow"
-      href="#"
-      >Shop</a
-    >
-    <a
-      class="m-3 text-white fs-4 text-decoration-none my-shadow"
-      href="#"
-      >Contact</a
-    >
+<header>
+  <nav class="navbar navbar-expand-md border-bottom fixed-top ">
+    <div class="container-fluid">
+      <a href="index.html" class="navbar-brand pe-3 my-shadow">
+        <img src="/assets/images/logo.png" height="60" alt="logo">        
+      </a>  
+      <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+        <label class="form-check-label d-none d-sm-block text-info" for="theme-mode">Light</label>
+        <input type="checkbox" class="form-check-input my-shadow" id="theme-mode">        
+        <label class="form-check-label d-none d-sm-block text-info" for="theme-mode">Dark</label>
+      </div>
+      <button class="navbar-toggler text-info" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-bg-info"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link link-info my-shadow" aria-current="page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-info my-shadow">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-info my-shadow" tabindex="-1" aria-disabled="true">Contact</a>
+          </li>
+        </ul>
+        <div class="navbar-nav d-flex align-items-primary">
+          <a class="position-relative">
+            <i class="fa fa-shopping-cart fa-3x me-4 text-info my-shadow"></i>
+            <div class="cart-no">5</div>
+          </a>
+          <button type="button" class="btn btn-outline-info me-2">Login</button>
+          <button type="button" class="btn btn-outline-info me-2">Sign-up</button>
+        </div>
+      </div>
+    </div>
   </nav>
-  <div class="d-flex align-items-primary">
-    <a class="position-relative">
-      <i class="fa fa-shopping-cart fa-3x me-4 text-dark my-shadow"></i>
-      <div class="cart-no">5</div>
-    </a>
-    <a class="btn btn-outline-info m-2">Login</a>
-    <a class="btn btn-outline-info m-2">Sign Up</a>
-  </div>
-</div>
+</header>
+
+
