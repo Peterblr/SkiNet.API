@@ -62,4 +62,11 @@ Update-Database --> update database after creating migration;
     "noImplicitOverride": true,
     ...
 
+* Add strict for Event into  tsconfig.json:
+    ...
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictDomEventTypes": false,
+        ...
+
 *

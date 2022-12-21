@@ -7,7 +7,7 @@ import { ShopService } from './shop.service';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.scss']
+  styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent implements OnInit {
   products: IProduct[];
@@ -15,8 +15,15 @@ export class ShopComponent implements OnInit {
   types: IType[];
   brandIdSelected = 0;
   typeIdSelected = 0;
+  sortSelected: string;
+  sortOptions = [
+    { name: '---', value: 'none' },
+    { name: 'Alphabetical', value: 'name' },
+    { name: 'Price: Low to Hight', value: 'price' },
+    { name: 'Price: Hight to Low', value: 'priceDesc' },
+  ];
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -25,27 +32,38 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    this.shopService.getProducts(this.brandIdSelected, this.typeIdSelected).subscribe(response => {
-      this.products = response.data;
-    }, error => {
-      console.log(error);
-    });
+    this.shopService
+      .getProducts(this.brandIdSelected, this.typeIdSelected, this.sortSelected)
+      .subscribe(
+        (response) => {
+          this.products = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   getBrands() {
-    this.shopService.getBrands().subscribe(response => {
-      this.brands = [{id: 0, name: 'All'}, ...response];
-    }, error => {
-      console.log(error);
-    });
+    this.shopService.getBrands().subscribe(
+      (response) => {
+        this.brands = [{ id: 0, name: 'All' }, ...response];
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   getTypes() {
-    this.shopService.getTypes().subscribe(response => {
-      this.types = [{id: 0, name: 'All'}, ...response];
-    }, error => {
-      console.log(error);
-    });
+    this.shopService.getTypes().subscribe(
+      (response) => {
+        this.types = [{ id: 0, name: 'All' }, ...response];
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   onBrandSelected(brandId: number) {
@@ -55,6 +73,11 @@ export class ShopComponent implements OnInit {
 
   onTypeSelected(typeId: number) {
     this.typeIdSelected = typeId;
+    this.getProducts();
+  }
+
+  onSortSelected(sort: string) {
+    this.sortSelected = sort;
     this.getProducts();
   }
 }
