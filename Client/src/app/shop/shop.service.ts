@@ -7,34 +7,38 @@ import { ShopParams } from '../shared/models/shopParams';
 import { IType } from '../shared/models/type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShopService {
   baseUrl = 'https://localhost:7064/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProducts(shopParams: ShopParams) {
     let params = new HttpParams();
 
-    if(shopParams.brandId) {
+    if (shopParams.brandId !== 0) {
       params = params.append('brandId', shopParams.brandId);
     }
 
-    if(shopParams.typeId) {
+    if (shopParams.typeId !== 0) {
       params = params.append('typeId', shopParams.typeId);
     }
 
-    if(shopParams.sort) {
-      params = params.append('sort', shopParams.sort);
-    }
+    params = params.append('sort', shopParams.sort);
+    params = params.append('pageIndex', shopParams.pageNumber.toString());
+    params = params.append('pageIndex', shopParams.pageSize.toString());
 
-    return this.http.get<IPagination>(this.baseUrl + 'products', {observe: 'response', params})
-    .pipe(
-      map(response => {
-        return response.body;
+    return this.http
+      .get<IPagination>(this.baseUrl + 'products', {
+        observe: 'response',
+        params,
       })
-    );
+      .pipe(
+        map((response) => {
+          return response.body;
+        })
+      );
   }
 
   getBrands() {
