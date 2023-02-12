@@ -8,20 +8,21 @@ import { AppComponent } from './app.component';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CoreModule } from './core/core.module';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule,
+    ShopModule
   ],
   providers: [],
   bootstrap: [AppComponent]

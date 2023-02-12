@@ -1,0 +1,41 @@
+.my-bg-custom {
+    background: linear-gradient(to right, #964242, #595e8d);
+  }
+
+.my-shadow:hover {
+    box-shadow: 0px 0px 1.5rem rgba(224, 132, 233, 0.87); 
+}
+
+.cart-no {
+    position: absolute;
+    min-height: 25px;
+    min-width: 25px;
+    border-radius: 50%;
+    font-size: 1em;
+    background: #432c6d;
+    color: #a9aee6;
+    text-align: center;
+    top: -10px;
+    right: 40%;
+}
+
+.img-logo {
+    max-height: 70px
+}
+
+// .navbar-collapse{
+//     max-width: 300px;
+//     background: #000;
+// }
+
+@media (max-width: 769px) {
+    .img-logo {
+        max-height: 55px
+    }
+}
+
+@media (max-width: 401px) {
+    .img-logo {
+        max-height: 40px
+    }
+}
