@@ -37,25 +37,36 @@
     </section>
     <section class="col-9">
       <div class="d-flex justify-content-between align-items-center pb-2">
-        
         <app-paging-header
           [totalCount]="totalCount"
           [pageSize]="this.shopParams.pageSize"
           [pageNumber]="this.shopParams.pageNumber"
         ></app-paging-header>
 
-        <form class="d-flex" role="search">
+        <div class="d-flex">
           <input
+          (keyup.enter)="onSearch()"
             class="form-control me-2"
+            #search
             type="search"
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success me-2" type="submit">
+          <button
+            (click)="onSearch()"
+            class="btn btn-outline-success me-2"
+            type="submit"
+          >
             Search
           </button>
-          <button class="btn btn-outline-success" type="submit">Reset</button>
-        </form>
+          <button
+            (click)="onReset()"
+            class="btn btn-outline-success"
+            type="submit"
+          >
+            Reset
+          </button>
+        </div>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col" *ngFor="let item of products">
@@ -63,13 +74,11 @@
         </div>
       </div>
       <div class="mt-4 d-flex justify-content-center" *ngIf="totalCount > 0">
-      
-        <app-pager 
+        <app-pager
           [pageSize]="shopParams.pageSize"
           [totalCount]="totalCount"
           (pageChange)="onPageChanged($event)"
         ></app-pager>
-      
       </div>
     </section>
   </div>
