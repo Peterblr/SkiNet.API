@@ -6,8 +6,7 @@ import { ProductDatailsComponent } from './shop/product-datails/product-datails.
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'shop', component: ShopComponent},
-  {path: 'shop/:id', component: ProductDatailsComponent},
+  {path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule)},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
