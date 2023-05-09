@@ -1,0 +1,22 @@
+.my-shadow:hover {
+    border-radius: 1.5rem;
+    box-shadow: 0px 0px 1.5rem rgba(224, 132, 233, 0.87); 
+}
+
+li {
+    background-color: rgba(18, 76, 126, 0.425);
+
+    &.active {
+        background-color: rgba(18, 75, 126, 0.3);
+        border-radius: 1.5rem;
+        box-shadow: 0px 0px 1.5rem rgba(132, 201, 233, 0.87);
+    }
+}
+
+select {
+    background-color: rgba(18, 76, 126, 0.425);
+}
+
+.spec-option {
+    background: #112131;
+}

@@ -20,7 +20,7 @@
         >
         <input
           type="checkbox"
-          class="form-check-input my-shadow"
+          class="form-check-input my-shadow-ch"
           id="theme-mode"
         />
         <label
@@ -46,19 +46,22 @@
             <a
               class="nav-link link-info my-shadow"
               [routerLink]="['/']"
-              routerLinkActive="router-link-active"
-              aria-current="page"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}"
               >Home</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link link-info my-shadow" routerLink="/shop">Shop</a>
+            <a
+              class="nav-link link-info my-shadow"
+              routerLink="/shop"
+              routerLinkActive="active"
+              >Shop</a
+            >
           </li>
           <li class="nav-item">
             <a
-              class="nav-link link-info w-25 my-shadow"
-              tabindex="-1"
-              aria-disabled="true"
+              class="nav-link link-info my-shadow"
               >Contact</a
             >
           </li>

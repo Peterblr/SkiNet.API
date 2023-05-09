@@ -3,6 +3,13 @@
   }
 
 .my-shadow:hover {
+    height: auto;
+    width: auto;
+    border-radius: 1.5rem;
+    box-shadow: 0px 0px 1.5rem rgba(224, 132, 233, 0.87); 
+}
+
+.my-shadow-ch:hover {
     box-shadow: 0px 0px 1.5rem rgba(224, 132, 233, 0.87); 
 }
 
@@ -21,6 +28,15 @@
 
 .img-logo {
     max-height: 70px
+}
+
+a {
+    &.active {
+        height: auto;
+        width: auto;
+        border-radius: 1.5rem;
+        box-shadow: 0px 0px 1.5rem rgba(132, 201, 233, 0.87);
+    }
 }
 
 // .navbar-collapse{
