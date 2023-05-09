@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDatailsComponent implements OnInit {
 
   product: IProduct;
+  imageIndex: number = 1;
 
   constructor(private shopService: ShopService, private activateRoute: ActivatedRoute) { }
 
