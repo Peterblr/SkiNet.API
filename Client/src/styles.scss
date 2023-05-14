@@ -1,5 +1,10 @@
 body {
-    background: linear-gradient(to right, #381a1a, #181a31);    
+    background: linear-gradient(to right, #381a1a, #181a31);   
+    // background: white;    
+
+    // &.dark-mode {
+    //     background: linear-gradient(to right, #381a1a, #181a31);    
+    // }
 }
 
 .my-container {
