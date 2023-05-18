@@ -106,3 +106,18 @@ Update-Database --> update database after creating migration;
                 })
               ],
               ...
+* Install xng-breadcrumb (https://www.npmjs.com/package/xng-breadcrumb/v/8.0.2)
+    4.1 --> npm i --save xng-breadcrumb@8.0.2
+    4.2 add to Core module -->
+        @NgModule({
+          ...
+          imports: [
+            CommonModule,
+            RouterModule,
+         -> BreadcrumbModule,
+            BrowserAnimationsModule,
+            ToastrModule.forRoot({
+              positionClass: 'toast-top-right',
+              preventDuplicates: true,
+            }),
+            ...

@@ -6,7 +6,7 @@ import { ProductDatailsComponent } from './product-datails/product-datails.compo
 
 const routes: Routes = [
   {path: '', component: ShopComponent},
-  {path: ':id', component: ProductDatailsComponent}
+  {path: ':id', component: ProductDatailsComponent, data: {breadcrumb: {alias: 'productDetails'}}}
 ];
 
 @NgModule({
