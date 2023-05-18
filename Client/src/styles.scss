@@ -7,6 +7,10 @@ body {
     // }
 }
 
+.carousel {
+    margin-top: 7rem;
+}
+
 .my-container {
     width: calc(100vw - 2rem);
     max-width: 1500px;
@@ -19,6 +23,6 @@ body {
     box-shadow: 0px 0px 1.5rem rgba(145, 158, 230, 0.3);
 }
 
-.my-empty {
-    height: 5rem;
+label.xng-breadcrumb-trail {
+    color: orange;
 }
