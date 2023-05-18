@@ -1,3 +1,4 @@
 # SkiNet.API
 
-![image](https://github.com/Peterblr/SkiNet.API/assets/74207879/cf58cfdb-0e54-4ead-a6f3-29ce3040e5d6)
+![image](https://github.com/Peterblr/SkiNet.API/assets/74207879/b0154be3-fb39-4ac5-9115-ee1c87262622)
+
