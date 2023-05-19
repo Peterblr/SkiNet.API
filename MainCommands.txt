@@ -8,6 +8,8 @@ Add-Migration 'InitialCreate' -o Data/Migrations --> add migration to folder;
 
 Update-Database --> update database after creating migration;
 
+dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add nyget packege;
+
 
 ******* Angular *************
 
