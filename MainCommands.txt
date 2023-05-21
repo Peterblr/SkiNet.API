@@ -13,6 +13,8 @@ dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add
 
 ******* Angular *************
 
+transform json to TS https://transform.tools/json-to-typescript
+
 * ng add ngx-bootstrap --> add ngx-bootstrap (https://valor-software.com/ngx-bootstrap/#/documentation)
 
 	--> add packege to app.module.ts imports:
@@ -123,3 +125,6 @@ dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add
               preventDuplicates: true,
             }),
             ...
+
+* Install uniqe ID (https://www.npmjs.com/package/uuid)
+    5.1 --> npm i uuid
