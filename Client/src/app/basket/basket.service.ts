@@ -20,6 +20,7 @@ export class BasketService {
       .pipe (
         map((basket: IBasket) => {
           this.basketSource.next(basket);
+          console.log(this.getCurrentBasketValue());
         })
       );
   }
@@ -27,6 +28,7 @@ export class BasketService {
   setBasket(basket: IBasket) {
     return this.http.post(this.baseUrl + 'basket', basket).subscribe((responce: IBasket) => {
       this.basketSource.next(responce);
+      console.log(responce)
     }, error => {
       console.log(error);
     });
