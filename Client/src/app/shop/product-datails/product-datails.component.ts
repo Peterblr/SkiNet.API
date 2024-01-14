@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/shared/models/product';
 import { ShopService } from '../shop.service';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
+import { BasketService } from 'src/app/basket/basket.service';
 
 @Component({
   selector: 'app-product-datails',
@@ -16,7 +17,8 @@ export class ProductDatailsComponent implements OnInit {
   constructor(
     private shopService: ShopService,
     private activateRoute: ActivatedRoute,
-    private bcService: BreadcrumbService
+    private bcService: BreadcrumbService,
+    private basketService: BasketService
   ) {}
 
   ngOnInit(): void {
@@ -36,4 +38,9 @@ export class ProductDatailsComponent implements OnInit {
         }
       );
   }
+
+  addItemToBasket() {
+    this.basketService.addItemToBasket(this.product);
+  }
+
 }

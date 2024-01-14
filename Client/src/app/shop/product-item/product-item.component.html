@@ -13,6 +13,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <span>{{ product.price | currency }}</span>
       <button
+        (click)="addItemToBasket()"
         type="button"
         class="btn btn-outline-info fa fa-shopping-cart"
       ></button>

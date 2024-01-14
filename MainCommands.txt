@@ -8,10 +8,12 @@ Add-Migration 'InitialCreate' -o Data/Migrations --> add migration to folder;
 
 Update-Database --> update database after creating migration;
 
-dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add nyget packege;
+dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add nuget package;
 
 
 ******* Angular *************
+
+transform json to TS https://transform.tools/json-to-typescript
 
 * ng add ngx-bootstrap --> add ngx-bootstrap (https://valor-software.com/ngx-bootstrap/#/documentation)
 
@@ -123,3 +125,6 @@ dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add
               preventDuplicates: true,
             }),
             ...
+
+* Install uniqe ID (https://www.npmjs.com/package/uuid)
+    5.1 --> npm i uuid
