@@ -10,6 +10,21 @@ Update-Database --> update database after creating migration;
 
 dotnet add Infrastructure package StackExchange.Redis --version 2.6.111  --> add nuget package;
 
+add NuGet packages
+    Infrastructure project
+        "Microsoft.AspNetCore.Identity" Version="2.2.0"
+        "Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0"
+        "Microsoft.IdentityModel.Tokens" Version="6.25.0"
+        "StackExchange.Redis" Version="2.6.111"
+        "System.IdentityModel.Tokens.Jwt" Version="6.24.0"
+    Core project
+        "Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11"
+    API project
+        "AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"
+        "Microsoft.EntityFrameworkCore.Design" Version="7.0.0"
+        "Microsoft.EntityFrameworkCore.Tools" Version="7.0.0"
+        "Swashbuckle.AspNetCore" Version="6.2.3"
+
 
 ******* Angular *************
 
