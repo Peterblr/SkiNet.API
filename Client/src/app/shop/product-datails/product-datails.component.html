@@ -44,11 +44,13 @@
     </p>
     <div class="d-flex justify-content-center align-items-center">
       <i
+      (click)="decrementQuantity()"
         class="fa fa-minus-circle text-warning mx-4 my-shadow"
         style="cursor: pointer; font-size: 2em"
       ></i>
-      <span class="font-weight-bold">2</span>
+      <span class="font-weight-bold">{{ quantity }}</span>
       <i
+      (click)="incrementQuantity()"
         class="fa fa-plus-circle text-warning mx-4 my-shadow"
         style="cursor: pointer; font-size: 2em"
       ></i>
