@@ -1,10 +1,12 @@
 using API.Errors;
 using API.Helpers;
 using API.Middleware;
+using Core.Entities.Identity;
 using Core.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
@@ -50,6 +52,13 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     };
 });
 
+builder.Services.AddIdentityCore<AppUser>(options =>
+                        options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AppIdentityDbContext>()
+    .AddSignInManager<SignInManager<AppUser>>();
+
+builder.Services.AddAuthentication();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -73,9 +82,15 @@ using (var scope = app.Services.CreateScope())
     var loggerFactory = serv.GetRequiredService<ILoggerFactory>();
     try
     {
+        var userManager = serv.GetRequiredService<UserManager<AppUser>>();
+        var identityContext = serv.GetRequiredService<AppIdentityDbContext>();
+        await identityContext.Database.MigrateAsync();
+        await AppIdentityDbContextSeed.SeedUserAsync(userManager);
+
         var context = serv.GetRequiredService<StoreContext>();
         await context.Database.MigrateAsync();
         await StoreContextSeed.SeedAsync(context, loggerFactory);
+
     }
     catch (Exception ex)
     {
