@@ -13,6 +13,7 @@ import { BasketService } from 'src/app/basket/basket.service';
 export class ProductDatailsComponent implements OnInit {
   product: IProduct;
   imageIndex: number = 1;
+  quantity = 1;
 
   constructor(
     private shopService: ShopService,
@@ -40,7 +41,17 @@ export class ProductDatailsComponent implements OnInit {
   }
 
   addItemToBasket() {
-    this.basketService.addItemToBasket(this.product);
+    this.basketService.addItemToBasket(this.product, this.quantity);
+  }
+
+  incrementQuantity() {
+    this.quantity++;
+  }
+
+  decrementQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
   }
 
 }
